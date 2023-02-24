@@ -1,0 +1,26 @@
+-R . graph_pebbling
+
+A_primitives.v
+A1_misc.v
+A2_lift.v
+A3_arith.v
+A4_lists.v
+A5_graphs.v
+A6_valuation_I.v
+A6_valuation_II.v
+
+B_pebbling.v
+B1_graph_pebbling.v
+B2_pebbling_hom.v
+B3_pebble_flow.v
+
+C1_basic_bounds.v
+C2_hypercube_I.v
+C2_hypercube_II.v
+C2_hypercube_III.v
+C3_divisor_lattice.v
+C4_diameter_2.v
+
+D1_zero_sum_sequence.v
+D2_pebbling_construction.v
+D3_addition_theorem.v
