@@ -18,8 +18,8 @@ Ltac simpl_sub_conf := simpl_lookup lookup_sub_conf lookup_sub_conf_ne.
 
 Context `{graph_G : Basic_Graph G, pebb_G : Pebbling_Graph G}.
 
-Variable p kG k : nat.
-Hypothesis Hk : 2 ≤ k ≤ kG.
+Variable p l k : nat.
+Hypothesis Hk : 2 ≤ k ≤ l.
 Notation v0 := false.
 Notation v1 := true.
 Notation arrow := (edge_graph Bool.lt k).
@@ -33,7 +33,7 @@ Section Fixed_Target.
 
 Variable t : V G.
 Hypothesis H1p : vertex_pebbling_bound G p t.
-Hypothesis H2p : vertex_pebbling_property G 2 kG (2 * p) t.
+Hypothesis H2p : vertex_pebbling_property G 2 l (2 * p) t.
 
 Notation p_gt1 := (vertex_pebbling_bound_ge1 _ _ H1p).
 Notation supp_le := (supp_le_vertex_pebbling_bound t _ _ H1p).
@@ -244,7 +244,7 @@ Qed.
 End Automorphism.
 
 Hypothesis H1p : pebbling_bound G p.
-Hypothesis H2p : pebbling_property G 2 kG (2 * p).
+Hypothesis H2p : pebbling_property G 2 l (2 * p).
 
 Theorem pebbling_bound_path2_prod :
   pebbling_bound (path2 ☐ G) (k * p).

@@ -103,12 +103,12 @@ Hypothesis ks_ord : ordered (≤) ks.
 
 Notation hypercube := (hypercube neq).
 
-Theorem pebbling_the_hypercube kG :
+Theorem pebbling_the_hypercube l :
   pebbling_bound (hypercube n ks) (product ks) ∧
-  pebbling_property (hypercube n ks) 2 (hd kG ks) (2 * product ks).
+  pebbling_property (hypercube n ks) 2 (hd l ks) (2 * product ks).
 Proof.
-revert kG ks_ge2 ks_ord; induction n as [|m];
-inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear kG].
+revert l ks_ge2 ks_ord; induction n as [|m];
+inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear l].
 - split.
   + eapply @surj_hom_pebbling_bound.
     * apply hom_hypercube_0_spec.
@@ -126,11 +126,11 @@ inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear kG].
   + eapply @surj_hom_pebbling_bound.
     * apply hom_hypercube_S_spec.
     * apply hom_hypercube_S_surj.
-    * apply pebbling_bound_path2_prod with (kG:=hd k ks); done.
+    * apply pebbling_bound_path2_prod with (l:=hd k ks); done.
   + eapply @surj_hom_pebbling_property.
     * apply hom_hypercube_S_spec.
     * apply hom_hypercube_S_surj.
-    * apply pebbling_property_path2_prod with (kG:=hd k ks); done.
+    * apply pebbling_property_path2_prod with (l:=hd k ks); done.
 Qed.
 
 Corollary pebbling_bound_hypercube :
@@ -152,13 +152,13 @@ Notation hypercube := (hypercube Bool.lt).
 Notation ones n := (vreplicate n true).
 Notation P2 := (edge_graph _ _).
 
-Theorem pebbling_the_directed_hypercube kG :
+Theorem pebbling_the_directed_hypercube l :
   vertex_pebbling_bound (hypercube n ks) (product ks) (ones n) ∧
-  vertex_pebbling_property (hypercube n ks) 2 (hd kG ks)
+  vertex_pebbling_property (hypercube n ks) 2 (hd l ks)
     (2 * product ks) (ones n).
 Proof.
-revert kG ks_ge2 ks_ord; induction n as [|m];
-inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear kG].
+revert l ks_ge2 ks_ord; induction n as [|m];
+inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear l].
 - split.
   + eapply @surj_hom_pebbling_bound.
     * apply hom_hypercube_0_spec.
@@ -178,11 +178,11 @@ inv_vec ks; [intros|clear ks; intros k ks; cbn; intros; clear kG].
   + eapply (@surj_hom_vertex_pebbling_bound (P2 ☐ hypercube _ _)).
     * apply hom_hypercube_S_spec.
     * apply hom_hypercube_S_surj.
-    * apply @vertex_pebbling_bound_arrow_prod with (kG:=hd k ks); done.
+    * apply @vertex_pebbling_bound_arrow_prod with (l:=hd k ks); done.
   + eapply (@surj_hom_vertex_pebbling_property (P2 ☐ hypercube _ _)).
     * apply hom_hypercube_S_spec.
     * apply hom_hypercube_S_surj.
-    * apply @vertex_pebbling_property_arrow_prod with (kG:=hd k ks); done.
+    * apply @vertex_pebbling_property_arrow_prod with (l:=hd k ks); done.
 Qed.
 
 Corollary vertex_pebbling_bound_directed_hypercube :

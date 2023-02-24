@@ -179,11 +179,11 @@ revert p; induction n as [n IH] using lt_wf_ind; intros p [->|Hp].
     * eapply (@surj_hom_vertex_pebbling_bound (_ ☐ _)).
       apply hom_composite_spec; done.
       apply hom_composite_surj; done.
-      apply vertex_pebbling_bound_arrow_prod with (kG:=q); done.
+      apply vertex_pebbling_bound_arrow_prod with (l:=q); done.
     * eapply (@surj_hom_vertex_pebbling_property (_ ☐ _)).
       apply hom_composite_spec; done.
       apply hom_composite_surj; done. rewrite Nat.mul_assoc.
-      apply vertex_pebbling_property_arrow_prod with (kG:=q); done.
+      apply vertex_pebbling_property_arrow_prod with (l:=q); done.
   + dec (m = 1).
     * exists p; split; [|left]; done.
     * destruct (find_min_prime_factor m) as [q [[]]]; [lia|exists q].
