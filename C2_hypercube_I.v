@@ -93,8 +93,8 @@ Lemma product_pebbling k i j (c : conf G) :
 Proof.
 intros H_ij <-; revert c; apply fn_nat_ind.
 - rewrite right_absorb_lift2, ?sub_conf_zero; done.
-- intros c v IH; rewrite alter_add, left_distr.
-  rewrite ?sub_conf_add; apply pebbling_add; [done|].
+- intros c v IH; replace S with ((+) 1) by done.
+  rewrite alter_add, left_distr, ?sub_conf_add; apply pebbling_add; [done|].
   apply rtc_once, one_pebble_step with (u:=(i,v))(v:=(j,v)).
   + left; done.
   + cbn; dec (v = v); simpl_sub_conf; cbn; simpl_insert; lia.

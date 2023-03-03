@@ -28,7 +28,7 @@ induction Hc as [c_g|c1_g c2_g c'_g H1]; intros.
   etrans; [apply Ht|apply H_le].
 - inversion_clear H1; cbn in H_conf.
   pose (w_uv := weight H (h u) (h v));
-  pose (c2_h := alter add1 (h v) (alter (subtract w_uv) (h u) c_h)).
+  pose (c2_h := alter S (h v) (alter (subtract w_uv) (h u) c_h)).
   apply IHHc with (c_h:=c2_h) in Ht as (c'_h & H2 & H3).
   + exists c'_h; split; [|done]. eapply rtc_l; [|done].
     eapply one_pebble_step; [apply graph_hom_edge; done|cbn|done].

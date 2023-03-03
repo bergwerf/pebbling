@@ -42,7 +42,7 @@ Inductive flow_step : conf * flow -> conf * flow -> Prop :=
   (H_edge : E u v)
   (H_conf : weight u v ≤ c u)
   (H_flow : 1 ≤ f (u, v))
-  (R_conf : c' = alter add1 v (alter (subtract (weight u v)) u c))
+  (R_conf : c' = alter S v (alter (subtract (weight u v)) u c))
   (R_flow : f' = alter (subtract 1) (u, v) f) :
   flow_step (c, f) (c', f').
 
@@ -151,7 +151,7 @@ Ltac rw_conf := repeat (rewrite fn_lookup_alter in * ||
   (rewrite fn_lookup_alter_ne in *; [|done_or_nia])).
 
 Ltac flow_cases u v w :=
-  rewrite ?flow_mul_alter;
+  replace S with ((+) 1) by done; rewrite ?flow_mul_alter;
   dec (w = u); [dec (v = u)|dec (w = v)]; rw_conf;
     [rw_inflow u u; rw_outflow u u
     |rw_outflow u v; rw_flux_ne
@@ -231,7 +231,7 @@ assert (H2s : outflow s f > inflow s f) by lia; clear Hs;
 assert (Hc : size c ≥ c s) by apply size_lwb.
 destruct (minimum_weight_outflow s f) as (t & H1t & H2t); [lia|].
 (* 4. Add one flow step and solve using induction hypothesis. *)
-pose (c1 := alter add1 t (alter (subtract (weight s t)) s c));
+pose (c1 := alter S t (alter (subtract (weight s t)) s c));
 pose (f1 := alter (subtract 1) (s, t) f);
 assert (H_step : (c, f) --> (c1, f1)).
 - apply flow_one_pebble with (u:=s)(v:=t).
@@ -266,7 +266,7 @@ intros (c' & Hc & Hn); induction Hc as [c|c1 c2 c'].
   rewrite ?summation_const; lia.
 - (* Step: add one flow unit. *)
   apply IHHc in Hn as (f2 & [H1f2 H2f2] & Hn); clear IHHc; inversion_clear H.
-  exists (alter add1 (u, v) f2); repeat split.
+  exists (alter S (u, v) f2); repeat split.
   + intros x y; dec ((x, y) = (u, v)); [done|]; simpl_alter; apply H1f2.
   + intros w; assert (Hw := H2f2 w); subst; flow_cases u v w.
   + unfold excess in *; subst; flow_cases u v t.

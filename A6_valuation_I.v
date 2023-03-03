@@ -57,13 +57,13 @@ dec (∀ a, f a = 0).
 Qed.
 
 Lemma fn_nat_ind (P : valuation A -> Prop) :
-  P (const 0) -> (∀ f a, P f -> P (alter add1 a f)) -> ∀ f, P f.
+  P (const 0) -> (∀ f a, P f -> P (alter S a f)) -> ∀ f, P f.
 Proof.
 intros H0 H1; apply (induction_ltof1 _ size);
 unfold ltof; intros f IH; dec (size f = 0).
 - apply size_zero in H as ->; done.
 - assert (Hf : size f > 0) by lia; apply size_nonzero in Hf as [a Ha].
-  replace f with (alter add1 a (alter (subtract 1) a f)).
+  replace f with (alter S a (alter (subtract 1) a f)).
   + apply H1, IH; rewrite size_alter; clia.
   + extensionality b; dec (b = a); simpl_alter; clia.
 Qed.
@@ -199,7 +199,7 @@ intros; induction m; cbn.
   assert (rsize k (f .- (const n .* f')) ≥ n).
   + red; etrans; [|apply rsize_sub; done]; rewrite size_mul_const; lia.
   + apply rsize_pigeon_hole in H2 as (a & Ha); [|done]; cbn in Ha.
-    exists (alter add1 a f'); split.
+    exists (alter S a f'); split.
     * intros b; inst H1 b; cbn; dec (b = a); simpl_alter; lia.
     * rewrite size_alter; lia.
 Qed.

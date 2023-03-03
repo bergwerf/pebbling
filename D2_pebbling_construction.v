@@ -41,7 +41,7 @@ induction pebbles as [|a l]; cbn.
 - destruct IHl as (c & <- & f & Hf); [set_solver|].
   destruct Hf as [H1 H2 H3]; assert (Ha : a ∈ a :: l) by set_solver.
   apply initialize in Ha as (v & Hl).
-  exists (alter add1 v c); split; [rewrite size_alter; done|].
+  exists (alter S v c); split; [rewrite size_alter; done|].
   exists (alter (cons [a]) v f); split.
   + intros w; dec (v = w); simpl_alter; [constructor|]; done.
   + intros w; dec (v = w); simpl_alter; cbn; rewrite H2; done.

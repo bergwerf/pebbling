@@ -44,7 +44,7 @@ Inductive pebble_step : conf -> conf -> Prop :=
   one_pebble_step (c c' : conf) (u v : V)
   (H_edge : E u v)
   (H_conf : weight u v ≤ c u)
-  (R_conf : c' = alter add1 v (alter (subtract (weight u v)) u c)) :
+  (R_conf : c' = alter S v (alter (subtract (weight u v)) u c)) :
   pebble_step c c'.
 
 Global Instance : Step conf := pebble_step.

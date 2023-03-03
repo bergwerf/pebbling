@@ -20,7 +20,6 @@ Notation min := Nat.min.
 Notation max := Nat.max.
 Notation lift_min := (lift2 min).
 Notation lift_max := (lift2 max).
-Notation add1 := (Nat.add 1).
 
 Notation gcd := Nat.gcd.
 Notation "m ∣ n" := ((m | n)) (at level 50).
@@ -78,6 +77,10 @@ Global Instance : RightDistr (=) Nat.mul subtract. see Nat.mul_sub_distr_r. Qed.
 
 Global Instance left_dominant_le n :
   LeftDominant (le n) (+).
+Proof. clia. Qed.
+
+Global Instance left_comm_S_add :
+  CondLeftComm (=) (λ _, True) S (+).
 Proof. clia. Qed.
 
 Global Instance left_comm_add_add n :
