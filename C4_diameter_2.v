@@ -38,18 +38,21 @@ Theorem pebbling_diameter_2 :
 Proof.
 intros t c H; unfold card in H.
 (* Partition the vertices into three sets. *)
-pose (us := filter (λ v, c v = 0) vs);
-pose (ws := filter (λ v, c v = 1) vs);
+pose (vs0 := filter (λ v, c v = 0) vs);
+pose (vs1 := filter (λ v, c v = 1) vs);
 pose (xs := filter (λ v, 2 ≤ c v) vs);
-assert (vs ≡ₚ us ++ ws ++ xs). { unfold us, ws, xs; etrans.
+assert (vs ≡ₚ vs0 ++ vs1 ++ xs). { unfold vs0, vs1, xs; etrans.
   eapply filter_app_Permutation. apply Permutation_app_head; etrans.
   apply filter_app_Permutation with (P:=λ v, c v = 1). apply Permutation_app;
   erewrite list_filter_filter, list_filter_iff; [done|clia|done|clia]. }
-(* length xs ≥ 1. *)
-(* determine ys. *)
-(* determine v with c v ≥ 3. *)
-(* determine zs. *)
-(* determine v' with c v' ≥ 4. *)
+(* Determine c t = 0. *)
+(* Determine NoDup xs and Forall (eq 0) xs. *)
+(* Determine ys with Forall2 (λ x y, E x y ∧ E y t) xs ys. *)
+(* Determine NoDup ys and length vs0 ≥ length xs + 1. *)
+(* Determine v with c v ≥ 3 and xs ≡ₚ v :: xs'. *)
+(* Determine zs with Forall2 (λ x z, E x z ∧ E z v) xs' zs. *)
+(* Determine length vs0 ≥ 2 * length xs. *)
+(* Determine w with c w ≥ 4. *)
 Admitted.
 
 End Diameter_2.
