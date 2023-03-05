@@ -44,7 +44,7 @@ intros H; apply @premise in H; split; cbn; intros u v [i []].
 unfold hypercube_edge_weight; destruct (vec_find _ _) as [k|] eqn:E; cbn.
 - eapply Forall_vlookup, Forall_impl; [|apply H]; lia.
 - exfalso; eapply vec_find_complete; [|apply E]; cbn.
-  rewrite vlookup_zip_with; cbn; apply irrefl_neq; done.
+  rewrite vlookup_zip_with; cbn; apply irrefl_ne; done.
 Qed.
 
 End Hypercube_Graph.
@@ -86,7 +86,7 @@ split; intros [i u] [j v]; intros H; cbn in H.
   + intros j'; inv_fin j'; cbn; [done|].
     intros; apply H2; intros ->; done.
 - rewrite unfold_weight_product_graph.
-  destruct H as [[H ->]|[[i' [H _]] <-]]; apply irrefl_neq in H.
+  destruct H as [[H ->]|[[i' [H _]] <-]]; apply irrefl_ne in H.
   + dec (v = v); cbn; destruct (decide _); done.
   + dec (u = v); dec (i = i); cbn; unfold hypercube_edge_weight.
     destruct (decide _), (vec_find _ _); done.
@@ -98,10 +98,10 @@ Section Undirected_Hypercube.
 
 Variable n : nat.
 Variable ks : vec nat n.
-Hypothesis ks_ge2 : Forall (le 2) ks.
+Hypothesis ks_ge2 : Forall (λ k, k ≥ 2) ks.
 Hypothesis ks_ord : ordered (≤) ks.
 
-Notation hypercube := (hypercube neq).
+Notation hypercube := (hypercube ne).
 
 Theorem pebbling_the_hypercube l :
   pebbling_bound (hypercube n ks) (product ks) ∧
@@ -145,7 +145,7 @@ Section Directed_Hypercube.
 
 Variable n : nat.
 Variable ks : vec nat n.
-Hypothesis ks_ge2 : Forall (le 2) ks.
+Hypothesis ks_ge2 : Forall (λ k, k ≥ 2) ks.
 Hypothesis ks_ord : ordered (≤) ks.
 
 Notation hypercube := (hypercube Bool.lt).

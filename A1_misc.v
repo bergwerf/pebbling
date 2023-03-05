@@ -62,16 +62,16 @@ Record minimal {A} (R : relation A) (P : A -> Prop) (a : A) : Prop := {
 Lemma contrapositive `{Decision Q} P : (¬ Q -> ¬ P) -> P -> Q.
 Proof. intros H1 H2; dec Q; [done|exfalso]; apply H1; done. Qed.
 
-Definition neq {A} : A -> A -> Prop := λ a a', a ≠ a'.
+Definition ne {A} : A -> A -> Prop := λ a a', a ≠ a'.
 
-Global Arguments neq _ _ /.
+Global Arguments ne _ _ /.
 
-Global Instance neq_irrefl {A} :
-  Irreflexive (@neq A).
+Global Instance ne_irrefl {A} :
+  Irreflexive (@ne A).
 Proof. intros a; unfold complement; done. Qed.
 
-Global Instance neq_dec `{EqDecision A} :
-  RelDecision (@neq A).
+Global Instance ne_dec `{EqDecision A} :
+  RelDecision (@ne A).
 Proof. solve_decision. Qed.
 
 Global Instance :
@@ -82,7 +82,7 @@ Global Instance :
   Irreflexive Bool.lt.
 Proof. intros []; unfold complement; done. Qed.
 
-Lemma irrefl_neq `{irrefl : Irreflexive A R} a b : R a b -> a ≠ b.
+Lemma irrefl_ne `{irrefl : Irreflexive A R} a b : R a b -> a ≠ b.
 Proof. repeat intro; subst; eapply irrefl; done. Qed.
 
 (* A generic step relations. *)

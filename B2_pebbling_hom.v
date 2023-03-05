@@ -62,7 +62,7 @@ assert (Hh_edge : E H (h u) (h v)) by (apply graph_hom_edge; done).
 eapply one_pebble_step; [done|cbn|].
 - rewrite graph_hom_weight; [|done]; etrans; [apply H_conf|].
   apply elem_of_summation, elem_of_list_fmap_1, elem_of_inv.
-- apply irrefl_neq in H_edge as ?, Hh_edge.
+- apply irrefl_ne in H_edge as ?, Hh_edge.
   extensionality w; unfold dmap.
   assert (Hw := NoDup_inv h w).
   (* Simplify left side. *)

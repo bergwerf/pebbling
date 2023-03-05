@@ -23,7 +23,7 @@ Hypothesis Hk : 2 ≤ k ≤ l.
 Notation v0 := false.
 Notation v1 := true.
 Notation arrow := (edge_graph Bool.lt k).
-Notation path2 := (edge_graph neq k).
+Notation path2 := (edge_graph ne k).
 
 (*
 Pebbling with a fixed target

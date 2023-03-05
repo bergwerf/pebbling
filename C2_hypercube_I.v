@@ -99,7 +99,7 @@ intros H_ij <-; revert c; apply fn_nat_ind.
   + left; done.
   + cbn; dec (v = v); simpl_sub_conf; cbn; simpl_insert; lia.
   + extensionality u; destruct u as [l u]; cbn in l.
-    apply irrefl_neq in H_ij; dec (l = i); [|dec (l = j)]; dec (u = v);
+    apply irrefl_ne in H_ij; dec (l = i); [|dec (l = j)]; dec (u = v);
     simpl_alter; simpl_sub_conf; cbn; simpl_insert; cbn; try congruence.
     dec (v = v); lia. lia.
 Qed.

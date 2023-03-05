@@ -61,7 +61,7 @@ exists (alter (cons l) v (alter (drop k) u f)); split.
   try constructor; try apply Forall_drop; done.
 - intros w; dec (w = v); [dec (u = v)|dec (w = u)]; simpl_alter;
   cbn; rewrite ?drop_length, ?H2; done.
-- etrans; [|done]; apply irrefl_neq in H_edge.
+- etrans; [|done]; apply irrefl_ne in H_edge.
   revert H_edge H4; clear; intros H1 H2.
   assert (∃ vs, enum V ≡ₚ u :: v :: vs ∧ u ∉ vs ∧ v ∉ vs).
   + (* Move u and v to the front. *)

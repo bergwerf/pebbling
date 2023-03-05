@@ -22,6 +22,16 @@ make -f CoqMakefile
 Results
 -------
 
+### Pebbling bound of a diameter-2 graph
+```
+Hypothesis undirected : Symmetric E.
+Hypothesis weight2 : ∀ u v, weight G u v = 2.
+Hypothesis diameter2 : ∀ u v, u = v ∨ E u v ∨ ∃ w, E u w ∧ E w v.
+
+Theorem pebbling_bound_diameter_2 :
+  pebbling_bound G (card V + 1).
+```
+
 ### Unidirectional solutions via pebble flows
 ```
 Corollary pebble_flow_spec t n c :
@@ -31,6 +41,9 @@ Corollary pebble_flow_spec t n c :
 
 ### Pebbling bound of an n-cube with generalized weights
 ```
+Hypothesis ks_ge2 : Forall (λ k, k ≥ 2) ks.
+Hypothesis ks_ord : ordered (≤) ks.
+
 Corollary pebbling_bound_hypercube :
   pebbling_bound (hypercube n ks) (product ks).
 ```
