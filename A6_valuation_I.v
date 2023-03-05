@@ -16,7 +16,7 @@ Section Size.
 Definition size (f : valuation A) := summation (f <$> enum A).
 
 Lemma size_const k : size (const k) = k * card A.
-Proof. unfold size; apply summation_const. Qed.
+Proof. unfold size; apply summation_fmap_const. Qed.
 
 Lemma size_lwb f a : f a ≤ size f.
 Proof. apply elem_of_summation, elem_of_list_fmap_1, elem_of_enum. Qed.
@@ -98,8 +98,8 @@ Proof.
 intros Hf Hz; apply submseteq_Permutation in Hz as (nz & ->).
 rewrite app_length, fmap_app, summation_app; trans (length nz); [|lia].
 replace (summation (min 1 ∘ f <$> z)) with 0; [induction nz; clia|].
-symmetry; apply Nat.le_0_r; etrans; [apply summation_bound with (k:=0)|lia].
-rewrite list_fmap_compose; eapply Forall_fmap, Forall_impl; [|apply Hf]. clia.
+symmetry; etrans; [apply summation_forall_eq with (k:=0)|done].
+rewrite list_fmap_compose; eapply Forall_fmap, Forall_impl; [|apply Hf]; clia.
 Qed.
 
 Corollary supp_lt_card f z :

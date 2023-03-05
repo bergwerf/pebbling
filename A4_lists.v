@@ -239,13 +239,17 @@ Section Summation.
 Global Instance summation_Permutation : Proper ((≡ₚ) ==> (=)) summation.
 Proof. intros xs ys H; apply foldr_Permutation. done. Qed.
 
-Lemma summation_const {A} (l : list A) k :
+Lemma summation_fmap_const {A} (l : list A) k :
   summation (const k <$> l) = k * length l.
 Proof. induction l; clia. Qed.
 
-Lemma summation_bound l k :
-  Forall (ge k) l -> summation l ≤ k * length l.
-Proof. induction l; cbn; inversion_clear 1; intuition; lia. Qed.
+Lemma summation_forall_eq l k :
+  Forall (eq k) l -> summation l = k * length l.
+Proof. induction l; cbn; inversion_clear 1; lia. Qed.
+
+Lemma summation_forall_le l k :
+  Forall (λ i, i ≤ k) l -> summation l ≤ k * length l.
+Proof. induction l; cbn; inversion_clear 1; lia. Qed.
 
 Lemma summation_add {A} f g (l : list A) :
   summation (f .+ g <$> l) = summation (f <$> l) + summation (g <$> l).

@@ -263,7 +263,7 @@ intros (c' & Hc & Hn); induction Hc as [c|c1 c2 c'].
 - (* Base: zero flow. *)
   exists (const 0); repeat split; cbn; intros. lia. all: unfold excess, flux;
   rewrite list_fmap_ext with (f:=(_.*_)∘_)(g:=const 0); cbn;
-  rewrite ?summation_const; lia.
+  rewrite ?summation_fmap_const; lia.
 - (* Step: add one flow unit. *)
   apply IHHc in Hn as (f2 & [H1f2 H2f2] & Hn); clear IHHc; inversion_clear H.
   exists (alter S (u, v) f2); repeat split.

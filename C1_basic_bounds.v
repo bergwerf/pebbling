@@ -71,7 +71,7 @@ split; [intros t c Hc|intros q; apply contrapositive; intros Hq H].
 - (* Unsolvable configuration *)
   destruct (H 0%fin (alter (subtract k) 0%fin (const k))) as (c' & H1 & H2).
   + rewrite size_alter; cbn; [|lia].
-    rewrite summation_const, fmap_length, length_fin_enum; lia.
+    rewrite summation_fmap_const, fmap_length, length_fin_enum; lia.
   + apply rtc_inv in H1 as [<-|(c1 & H3 & H4)].
     * revert H2; simpl_alter; clia.
     * inv H3; revert H_conf; dec (u = 0%fin); simpl_alter; clia.

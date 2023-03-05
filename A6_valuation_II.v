@@ -162,7 +162,7 @@ Proof.
 intros H1 H2; rewrite H2; cbn; split.
 - replace (summation _) with 0; [lia|].
   assert (summation (f <$> l) ≤ 0 * length (f <$> l)); [|lia].
-  apply summation_bound; decompose_Forall; red; etrans; [apply H1|].
+  apply summation_forall_le; decompose_Forall; etrans; [apply H1|].
   erewrite lookup_inv_dmap_zero; [done|done|].
   eapply elem_of_list_lookup_2; done.
 - etrans; [apply H1|]; erewrite lookup_inv_dmap; done.

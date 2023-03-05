@@ -44,9 +44,9 @@ edestruct zero_sum_sublist with (l:=f <$> ls) as (l & H1 & H2 & H3).
     destruct H as (_ & [m ->] & _); rewrite Nat.div_mul; done.
   + (* The result GCD sum is at most k*p. *)
     rewrite fmap_concat_comm, <-summation_concat.
-    etrans; [apply summation_bound with (k:=p)|]; [|rewrite fmap_length].
+    etrans; [apply summation_forall_le with (k:=p)|]; [|rewrite fmap_length].
     * apply list.Forall_forall; intros i Hi.
-      apply elem_of_list_fmap in Hi as (l & -> & Hl); red.
+      apply elem_of_list_fmap in Hi as (l & -> & Hl).
       eapply list.Forall_forall in H1_ls as (_ & _ & H). done.
       eapply elem_of_submseteq; [|apply sublist_submseteq]; done.
     * apply sublist_length in H2; nia.
