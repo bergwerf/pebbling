@@ -1,8 +1,11 @@
 Graph Pebbling in Coq
 =====================
+
+[![DOI](https://zenodo.org/badge/DOI/10.48550/arXiv.2303.04590.svg)](https://arxiv.org/abs/2303.04590)
+
 This repository holds the formalization of various graph pebbling results, which
-I produced over the course of my master's thesis. The Coq source is split over
-multiple files which are ordered by their prefix. The prefix starts with a
+I produced over the course of my master's thesis ([1]). The Coq source is split
+over multiple files which are ordered by their prefix. The prefix starts with a
 a letter that indicates to which part the file belongs. There are four parts:
 
 - **Part A** - Utility library
@@ -11,13 +14,14 @@ a letter that indicates to which part the file belongs. There are four parts:
 - **Part D** - Number theory constructions
 
 This formalization was developed using *Coq 8.16.0* and *Coq-stdpp 1.8.0*. To
-check the formalization, install the stdpp library ([1]) and run these commands:
+check the formalization, install the stdpp library ([2]) and run these commands:
 ```
 coq_makefile -f _CoqProject -o CoqMakefile
 make -f CoqMakefile
 ```
 
-[1]: https://gitlab.mpi-sws.org/iris/stdpp
+[1]: https://arxiv.org/abs/2303.04590
+[2]: https://gitlab.mpi-sws.org/iris/stdpp
 
 Results
 -------
