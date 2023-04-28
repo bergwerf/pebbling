@@ -1,7 +1,9 @@
 Graph Pebbling in Coq
 =====================
 
-[![DOI](https://zenodo.org/badge/DOI/10.48550/arXiv.2303.04590.svg)](https://arxiv.org/abs/2303.04590)
+- Full Text: [arXiv](https://arxiv.org/abs/2303.04590)
+- Presentation: [YouTube](https://www.youtube.com/watch?v=yPzyQ4M1f3c)
+- Backup: [Zenodo](https://doi.org/10.5281/zenodo.7876086)
 
 This repository holds the formalization of various graph pebbling results, which
 I produced over the course of my master's thesis ([1]). The Coq source is split
